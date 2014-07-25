@@ -12,7 +12,8 @@ define([
             industry: '',
             geocodedLocation: '',
             location: '',
-            locationUrl: ''
+            locationUrl: '',
+            map: ''
         },
         
         geocodeLocation: function () {
