@@ -26,3 +26,5 @@ define([
 
     return ConnectionMapView;
 });
+
+//Could use this in the future to show a list of people then have a marker popup where they are...
