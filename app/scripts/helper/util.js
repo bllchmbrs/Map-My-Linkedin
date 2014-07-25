@@ -7,8 +7,8 @@ define(function(){
 
     function cleanLocation (location) {
         if (location) {
-            showMe(location.name);
-            showMe(location.country.code.toUpperCase());
+            // showMe(location.name);
+            // showMe(location.country.code.toUpperCase());
         }
         return {
             name: '',
