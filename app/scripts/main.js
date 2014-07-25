@@ -44,9 +44,7 @@ define(function(require){
             connections.add(
                 createdModel
             );
-            new ConnectionMapView({
-                model: createdModel
-            })
+            // need to parse this collection to find all the places
         }
     }
 
