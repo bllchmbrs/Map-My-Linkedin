@@ -1,22 +1,24 @@
 define(function(){
     'use strict';
 
-    function chicken () {
-        console.log('hello there');
-    }
-
     function showMe (it){
         console.log(it);
     }
 
-    function getConnections () {
-        IN.API.Connections('me')
-        .fields('firstName', 'lastName', 'industry')
-        .result(showMe);
+    function cleanLocation (location) {
+        if (location) {
+            showMe(location.name);
+            showMe(location.country.code.toUpperCase());
+        }
+        return {
+            name: '',
+            geocoded: ''
+        };
     }
 
+
+
     return {
-        chicken:chicken,
-        getConnections: getConnections
+        cleanLocation: cleanLocation
     };
 });
