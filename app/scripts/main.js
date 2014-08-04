@@ -12,15 +12,23 @@ require.config({
 });
 
 define(function(require){
+    // Models
     var ConnectionModel = require('./models/connection');
-    var ConnectionCollection = require('./collections/connection');
-    var ConnectionMapView = require('./views/connection-map');
-    var Util = require('./helper/util');
-    var IN = window.IN;
-    var connections = new ConnectionCollection;
+    var Locations = require('./models/locations');
     var globalMap = require('./models/map');
 
+    // Collections
+    var ConnectionCollection = require('./collections/connection');
+
+    // Views
+    var ConnectionMapView = require('./views/connection-map');
+    // Instantiations
+
+    var IN = window.IN;
+    var connections = new ConnectionCollection;
+
     function getConnections () {
+        console.log('getting connections');
         IN.API.Connections('me')
         .fields('firstName', 'lastName', 'industry', 'location',
             'picture-url', 'positions', 'num-connections', 'num-connections-capped',
@@ -30,21 +38,22 @@ define(function(require){
 
     function parseConnectionValues (unParsedConnections) {
         var values = unParsedConnections.values;
+        console.log('got our values... now going through them');
+
         for (var i = 0; i < values.length; i++) {
-            var cleanedLocation = Util.cleanLocation(values[i].location);
+            console.log(i);
+            console.log(Locations);
+
+            Locations.addOrGetByLocation(values[i].location);
             var createdModel = new ConnectionModel({
                     name: values[i].formattedName,
                     industry: values[i].industry,
-                    location: cleanedLocation.name,
-                    // location: cleanedLocation.name,
-                    // geocodedLocation: cleanedLocation.geocoded,
-                    geocodedLocation: new google.maps.LatLng(37.733795, -122.446747),
-                    map: globalMap
-            });
+                    linkedinLocation: values[i].location
+                });
             connections.add(
                 createdModel
             );
-            // need to parse this collection to find all the places
+            console.log(Locations.getAll());
         }
     }
 
