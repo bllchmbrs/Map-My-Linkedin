@@ -16,9 +16,9 @@ define([
         render: function () {
             console.log(this.model);
             this.marker = new google.maps.Marker({
-                position: this.model.get("geocodedLocation"),
-                map: this.model.get("map"),
-                title: "Hello"
+                position: this.model.get('geocodedLocation'),
+                map: this.model.get('map'),
+                title: 'Hello'
             });
             console.log(this.marker);
         }
