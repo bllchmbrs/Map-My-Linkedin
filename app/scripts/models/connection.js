@@ -10,16 +10,7 @@ define([
         defaults: {
             name: '',
             industry: '',
-            geocodedLocation: '',
-            location: '',
-            locationUrl: '',
-            map: ''
-        },
-        
-        geocodeLocation: function () {
-            if (this.geocodedLocation === '') {
-                
-            }
+            linkedinLocation: {}
         }
     });
 
