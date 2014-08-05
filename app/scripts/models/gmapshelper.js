@@ -7,6 +7,12 @@ define(function(){
         zoom:3,
         center: new google.maps.LatLng(39.742043, -104.991531)
     });
+    var geocoder = new google.maps.Geocoder();
 
-    return map;
+
+
+    return {
+        map: map,
+        geocoder: geocoder
+    };
 });
