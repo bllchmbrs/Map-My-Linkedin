@@ -15,7 +15,8 @@ define(function(require){
     // Models
     var ConnectionModel = require('./models/connection');
     var Locations = require('./models/locations');
-    var globalMap = require('./models/map');
+    var googleMaps = require('./models/gmapshelper');
+    var globalMap = googleMaps.map;
 
     // Collections
     var ConnectionCollection = require('./collections/connection');
@@ -39,8 +40,6 @@ define(function(require){
     function parseConnectionValues (unParsedConnections) {
         var values = unParsedConnections.values;
         console.log('Now parsing connection values...');
-
-        console.log(values[i]);
         for (var i = 0; i < values.length; i++) {
             Locations.addOrGetByLocation(values[i].location);
             var newConnectionModel = new ConnectionModel({
@@ -48,11 +47,10 @@ define(function(require){
                     industry: values[i].industry,
                     linkedinLocation: values[i].location ? values[i].location : {}
                 });
-            connections.add(
-                newConnectionModel
-            );
+            connections.add(newConnectionModel);
         }
     }
+
 
     IN.Event.on(IN, 'auth', getConnections);
 });
