@@ -22,8 +22,8 @@ define(function(require){
 
     // Views
     var ConnectionMapView = require('./views/connection-map');
-    // Instantiations
 
+    // Instantiations
     var IN = window.IN;
     var connections = new ConnectionCollection;
 
@@ -38,22 +38,19 @@ define(function(require){
 
     function parseConnectionValues (unParsedConnections) {
         var values = unParsedConnections.values;
-        console.log('got our values... now going through them');
+        console.log('Now parsing connection values...');
 
+        console.log(values[i]);
         for (var i = 0; i < values.length; i++) {
-            console.log(i);
-            console.log(Locations);
-
             Locations.addOrGetByLocation(values[i].location);
-            var createdModel = new ConnectionModel({
+            var newConnectionModel = new ConnectionModel({
                     name: values[i].formattedName,
                     industry: values[i].industry,
-                    linkedinLocation: values[i].location
+                    linkedinLocation: values[i].location ? values[i].location : {}
                 });
             connections.add(
-                createdModel
+                newConnectionModel
             );
-            console.log(Locations.getAll());
         }
     }
 
