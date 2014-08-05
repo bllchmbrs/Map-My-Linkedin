@@ -1,27 +1,39 @@
 /*global define*/
 
-define(['underscore'], function(_) {
+define(function(require){
     'use strict';
+    var $ = require('jquery');
+    var _ = require('underscore');
+    var googleMaps = require('./gmapshelper');
     var Locations = function () {
 
         var _locations = [];
         // example: {
         //     originalCountryCode: 'us',
         //     originalName: 'San Francisco Bay Area', 
-        //     geocodedUrl: http://.....
+        //     locationName: 'San Francisco Bay'
         //     geocodedData: {
         //         data: is_here
         //     }
         // }
 
-        function generateGeocoded (name){
-            var first = 'https://maps.googleapis.com/maps/api/geocode/json?';
-            var key = 'key=AIzaSyD9HhZRFpmhfYuEgkfmkE-5ucBnEE8rZzo&';
+        function cleanLocationName (name) {
             var nameAsList = name.split(' ');
             delete nameAsList[nameAsList.indexOf('Greater')];
             delete nameAsList[nameAsList.indexOf('Area')];
-            var address = 'address=' + encodeURIComponent(nameAsList.join(' '));
-            return first + key + address;
+            var address = nameAsList.join(' ');
+            return address;
+        }
+
+        function getLocationData (address) {
+            googleMaps.geocoder.geocode({'address': address}, function (results, status){
+                 if (status == google.maps.GeocoderStatus.OK) {
+                    console.log(results);
+                 }
+                 else {
+                    console.log(status);
+                 }
+            });
         }
 
         return {
@@ -38,10 +50,12 @@ define(['underscore'], function(_) {
                     originalCountryCode: countryCode
                 })[0] === undefined) {
                     console.log('pushing ' + locationName + ' location...');
+                    var tempLocationUrl = cleanLocationName(locationName);
                     _locations.push({
                         originalName: locationName,
                         originalCountryCode: countryCode,
-                        geocodedUrl: generateGeocoded(locationName),
+                        locationName: tempLocationUrl,
+                        rawLocationData: getLocationData(tempLocationUrl)
                     });
                 }
                 return _.where(_locations,{
@@ -51,6 +65,11 @@ define(['underscore'], function(_) {
             },
             getAll: function () {
                 return _locations;
+            },
+            fetchByLocation: function (linkedinlocation) {
+                var location = this.addOrGetByLocation(linkedinlocation);
+                location.fetchLocationData();
+
             }
         };
     };
