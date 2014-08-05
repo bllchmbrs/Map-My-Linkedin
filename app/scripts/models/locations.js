@@ -26,7 +26,6 @@ define(['underscore'], function(_) {
 
         return {
             addOrGetByLocation: function (linkedinlocation){
-                console.log('adding to locations...');
                 if (!linkedinlocation) {
                     return []; // if no location ignore
                 }
@@ -36,9 +35,9 @@ define(['underscore'], function(_) {
 
                 if (_.where(_locations, {
                     originalName: locationName,
-                    originalCountryCode: countryCode // Testing for an empty array in javascript is stupid...
+                    originalCountryCode: countryCode
                 })[0] === undefined) {
-                    console.log('pushing...');
+                    console.log('pushing ' + locationName + ' location...');
                     _locations.push({
                         originalName: locationName,
                         originalCountryCode: countryCode,
