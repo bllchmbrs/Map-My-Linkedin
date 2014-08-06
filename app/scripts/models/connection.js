@@ -7,10 +7,15 @@ define([
     'use strict';
 
     var ConnectionModel = Backbone.Model.extend({
+        initialize: function() {
+        },
+
         defaults: {
-            name: '',
-            industry: '',
-            linkedinLocation: {}
+            linkedinLocationName: "",
+            linkedinLocationCountryCode: "",
+            displayLocationName: "",
+            people: [],
+            geocodedLocationData: {}
         }
     });
 
