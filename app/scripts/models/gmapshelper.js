@@ -20,7 +20,7 @@ define(function(){
         //         console.log(status);
         //      }
         // });
-        return "Geo data"
+        return 'Geo data';
     }
 
 
