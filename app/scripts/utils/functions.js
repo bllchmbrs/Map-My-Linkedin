@@ -3,7 +3,9 @@
 define(function(require){
     'use strict';
     
-    function cleanLocationName (name) {
+    function cleanLinkedinLocation (name) {
+            console.log(name);
+            
             var nameAsList = name.split(' ');
             delete nameAsList[nameAsList.indexOf('Greater')];
             delete nameAsList[nameAsList.indexOf('Area')];
@@ -11,7 +13,25 @@ define(function(require){
             return address;
         }
 
+    function cleanLinkedinConnection (rawConnectionObject) {
+        // we'll do all of our cleaning in here, will allow us to easily create people
+
+            //         person = {
+            //     firstName: values[i].firstName,
+            //     lastName: values[i].lastName,
+            //     formattedName: values[i].formattedName,
+            //     industry: values[i].industry,
+            //     numConnections: values[i].numConnections,
+            //     numConnectionsCapped: values[i].numConnectionsCapped,
+            //     pictureUrl: values[i].pictureUrl,
+            //     positions: values[i].positions
+            // }
+
+            // console.log(person);
+        return {}
+        }
     return {
-        cleanLocationName: cleanLocationName
+        cleanLinkedinLocation: cleanLinkedinLocation,
+        cleanLinkedinConnection: cleanLinkedinConnection
     };
 });
