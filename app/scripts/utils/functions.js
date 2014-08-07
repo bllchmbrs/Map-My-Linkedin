@@ -3,13 +3,17 @@
 define(function(require){
     'use strict';
     
-    function cleanLinkedinLocation (name) {
-            console.log(name);
+    function cleanLinkedinLocation (rawlocationObject) {
+            var name = rawlocationObject ? rawlocationObject.name : undefined;
+            var nameAsList, address;
+
+            if (name !== undefined) {
+                nameAsList = name.split(' ');
+                delete nameAsList[nameAsList.indexOf('Greater')];
+                delete nameAsList[nameAsList.indexOf('Area')];
+                address = nameAsList.join(' ');
+            }
             
-            var nameAsList = name.split(' ');
-            delete nameAsList[nameAsList.indexOf('Greater')];
-            delete nameAsList[nameAsList.indexOf('Area')];
-            var address = nameAsList.join(' ');
             return address;
         }
 
@@ -28,8 +32,8 @@ define(function(require){
             // }
 
             // console.log(person);
-        return {}
-        }
+        return {};
+    }
     return {
         cleanLinkedinLocation: cleanLinkedinLocation,
         cleanLinkedinConnection: cleanLinkedinConnection
