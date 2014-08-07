@@ -30,7 +30,8 @@ define(function(require){
     var connections = new ConnectionCollection;
     var globalMap = googleMaps.map;
     var geocodeAddress = googleMaps.geocodeAddress;
-    var cleanLocationName = FunctionHelpers.cleanLocationName;
+    var cleanLinkedinLocation = FunctionHelpers.cleanLinkedinLocation,
+    cleanLinkedinConnection = FunctionHelpers.cleanLinkedinConnection;
 
     function getConnections () {
         console.log('getting connections');
@@ -44,18 +45,26 @@ define(function(require){
     function parseConnectionValues (unParsedConnections) {
         console.log('Now parsing raw LinkedIn connections...');
         var values = unParsedConnections.values;
+        var cleanedLocation, cleanedConnection, tempConnection, tempPeople;
 
         for (var i = 0; i < values.length; i++) {
-            // need to check if it's the collection here
-            console.log(values[i]);
-            // if not
-            new ConnectionModel({
-                linkedLocationName: values[i].location ? values[i].location.name : "",
-                linkedinlocationCountryCode: values[i].location ? values[i].location.country.code : "",
-                displayLocationName: values[i].location ? cleanLocationName(values[i].location.name) : "",
-                people: [values[i]],
-                geocodedLocationData: values[i].location ? geocodeAddress(values[i].location.name) : ""
-            })
+            cleanedLocation = cleanLinkedinLocation(values[i].location);
+            cleanedConnection = cleanLinkedinConnection(values[i]);
+            tempConnection = connections.findWhere({locationName: cleanedLocation});
+
+            if (tempConnection !== undefined) {
+                tempPeople = tempConnection.get('people');
+                tempPeople.push(cleanedConnection);
+                tempConnection.set({people: tempPeople});
+            } else {
+                connections.add([
+                        new ConnectionModel({
+                            locationName: cleanedLocation,
+                            people: [cleanedConnection],
+                            geocodedLocationData: cleanedLocation ? geocodeAddress(cleanedLocation) : undefined
+                        })
+                    ]);
+            }
         }
     }
 
