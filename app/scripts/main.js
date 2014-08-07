@@ -15,26 +15,31 @@ define(function(require){
     // Models
     var ConnectionModel = require('./models/connection');
     var googleMaps = require('./models/gmapshelper');
+    var StatusModel = require('./models/status');
 
     // Collections
     var ConnectionCollection = require('./collections/connection');
 
     // Views
     var ConnectionMapView = require('./views/connection-map');
+    var StatusView = require('./views/status');
 
     //Helpers
     var FunctionHelpers = require('./utils/functions');
 
     // Instantiations
     var IN = window.IN;
+    var status = new StatusModel();
+    var liveStatus = new StatusView({model: status});
     var connections = new ConnectionCollection;
+
     var globalMap = googleMaps.map;
     var geocodeAddress = googleMaps.geocodeAddress;
     var cleanLinkedinLocation = FunctionHelpers.cleanLinkedinLocation,
     cleanLinkedinConnection = FunctionHelpers.cleanLinkedinConnection;
 
     function getConnections () {
-        console.log('getting connections');
+        status.set({message: 'Getting Connections'});
         IN.API.Connections('me')
         .fields('firstName', 'lastName', 'industry', 'location',
             'picture-url', 'positions', 'num-connections', 'num-connections-capped',
@@ -43,9 +48,10 @@ define(function(require){
     }
 
     function parseConnectionValues (unParsedConnections) {
-        console.log('Now parsing raw LinkedIn connections...');
         var values = unParsedConnections.values;
         var cleanedLocation, cleanedConnection, tempConnection, tempPeople;
+
+        status.set({message: 'Alright we\'ve found ' + values.length + ' connections, now we need to go through them'});
 
         for (var i = 0; i < values.length; i++) {
             cleanedLocation = cleanLinkedinLocation(values[i].location);
