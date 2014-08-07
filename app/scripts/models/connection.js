@@ -11,9 +11,9 @@ define([
         },
 
         defaults: {
-            linkedinLocationName: "",
-            linkedinLocationCountryCode: "",
-            displayLocationName: "",
+            linkedinLocationName: '',
+            linkedinLocationCountryCode: '',
+            displayLocationName: '',
             people: [],
             geocodedLocationData: {}
         }
