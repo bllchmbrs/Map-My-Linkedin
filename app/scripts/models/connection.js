@@ -14,11 +14,6 @@ define([
         },
 
         geocode: function() {
-            if (this.get('locationName') == ""){
-                console.log("-----");
-                console.log(this.get("locationName"));
-                console.log(this);
-            }
             // this.set({geocodedLocationData : geocodeAddress(this.locationName)});
         },
 
