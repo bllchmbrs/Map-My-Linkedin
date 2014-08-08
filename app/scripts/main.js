@@ -56,22 +56,20 @@ define(function(require){
         for (var i = 0; i < values.length; i++) {
             cleanedLocation = cleanLinkedinLocation(values[i].location);            
             cleanedConnection = cleanLinkedinConnection(values[i]);
-            if (cleanedLocation === "") {
-                cleanedLocation = "No Location";
-            }
             tempConnection = connections.findWhere({locationName: cleanedLocation});
-
-            if (tempConnection !== undefined) {
-                tempPeople = tempConnection.get('people');
-                tempPeople.push(cleanedConnection);
-                tempConnection.set({people: tempPeople});
-            } else {
-                connections.add([
-                    new ConnectionModel({
-                        locationName: cleanedLocation,
-                        people: [cleanedConnection]
-                    })
-                ]);
+            if (cleanedLocation !== undefined) {
+                if (tempConnection !== undefined) {
+                    tempPeople = tempConnection.get('people');
+                    tempPeople.push(cleanedConnection);
+                    tempConnection.set({people: tempPeople});
+                } else {
+                    connections.add([
+                        new ConnectionModel({
+                            locationName: cleanedLocation,
+                            people: [cleanedConnection]
+                        })
+                    ]);
+                }
             }
         }
         status.set({message: values.length + ' connections in ' + connections.length + ' locations. Now we\'ve got to put them on the map!'});
