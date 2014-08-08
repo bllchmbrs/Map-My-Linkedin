@@ -11,7 +11,7 @@ define([
         },
 
         defaults: {
-            message: "Starting the Connection"
+            message: 'Starting the Connection'
         }
     });
 
