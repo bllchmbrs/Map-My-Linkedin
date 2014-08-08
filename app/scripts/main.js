@@ -29,14 +29,15 @@ define(function(require){
 
     // Instantiations
     var IN = window.IN;
-    var status = new StatusModel();
-    var liveStatus = new StatusView({model: status});
+    var status = new StatusModel(),
+        liveStatus = new StatusView({model: status});
     var connections = new ConnectionCollection;
 
     var globalMap = googleMaps.map;
-    var geocodeAddress = googleMaps.geocodeAddress;
+    var geocodeCollection = googleMaps.geocodeCollection;
+
     var cleanLinkedinLocation = FunctionHelpers.cleanLinkedinLocation,
-    cleanLinkedinConnection = FunctionHelpers.cleanLinkedinConnection;
+        cleanLinkedinConnection = FunctionHelpers.cleanLinkedinConnection;
 
     function getConnections () {
         status.set({message: 'Getting Connections'});
@@ -52,10 +53,12 @@ define(function(require){
         var cleanedLocation, cleanedConnection, tempConnection, tempPeople;
 
         status.set({message: 'Alright we\'ve found ' + values.length + ' connections, now we need to go through them'});
-
         for (var i = 0; i < values.length; i++) {
-            cleanedLocation = cleanLinkedinLocation(values[i].location);
+            cleanedLocation = cleanLinkedinLocation(values[i].location);            
             cleanedConnection = cleanLinkedinConnection(values[i]);
+            if (cleanedLocation === "") {
+                cleanedLocation = "No Location";
+            }
             tempConnection = connections.findWhere({locationName: cleanedLocation});
 
             if (tempConnection !== undefined) {
@@ -64,14 +67,15 @@ define(function(require){
                 tempConnection.set({people: tempPeople});
             } else {
                 connections.add([
-                        new ConnectionModel({
-                            locationName: cleanedLocation,
-                            people: [cleanedConnection],
-                            geocodedLocationData: cleanedLocation ? geocodeAddress(cleanedLocation) : undefined
-                        })
-                    ]);
+                    new ConnectionModel({
+                        locationName: cleanedLocation,
+                        people: [cleanedConnection]
+                    })
+                ]);
             }
         }
+        status.set({message: values.length + ' connections in ' + connections.length + ' locations. Now we\'ve got to put them on the map!'});
+        geocodeCollection(connections);
     }
 
 
