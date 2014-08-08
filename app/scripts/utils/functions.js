@@ -12,6 +12,8 @@ define(function(){
             delete nameAsList[nameAsList.indexOf('Greater')];
             delete nameAsList[nameAsList.indexOf('Area')];
             address = nameAsList.join(' ');
+        } else {
+            address = undefined;
         }
         
         return address;
