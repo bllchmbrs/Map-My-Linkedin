@@ -50,25 +50,24 @@ define(function(require){
 
     function parseConnectionValues (unParsedConnections) {
         var values = unParsedConnections.values;
-        var cleanedLocation, cleanedConnection, tempConnection, tempPeople;
+        var cleanedLocation, cleanedConnection, tempConnection, tempPeople, cm;
 
         status.set({message: 'Alright we\'ve found ' + values.length + ' connections, now we need to go through them'});
         for (var i = 0; i < values.length; i++) {
-            cleanedLocation = cleanLinkedinLocation(values[i].location);            
+            cleanedLocation = cleanLinkedinLocation(values[i].location);
             cleanedConnection = cleanLinkedinConnection(values[i]);
             tempConnection = connections.findWhere({locationName: cleanedLocation});
             if (cleanedLocation !== undefined) {
-                if (tempConnection !== undefined) {
+                if (tempConnection !== undefined) { 
                     tempPeople = tempConnection.get('people');
                     tempPeople.push(cleanedConnection);
                     tempConnection.set({people: tempPeople});
                 } else {
-                    connections.add([
-                        new ConnectionModel({
+                    cm = new ConnectionModel({
                             locationName: cleanedLocation,
                             people: [cleanedConnection]
-                        })
-                    ]);
+                        });
+                    connections.push(cm);
                 }
             }
         }
