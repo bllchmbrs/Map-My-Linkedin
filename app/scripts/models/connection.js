@@ -14,13 +14,23 @@ define([
         },
 
         geocode: function() {
-            // this.set({geocodedLocationData : geocodeAddress(this.locationName)});
+            var gcode = geocodeAddress(this.get("locationName"));
+            console.log("Executing at: " + new Date());
+            if (gcode !== true) {
+                console.log("-------------------------------------");
+                console.log(this.get('locationName') + " failed");
+                console.log(gcode);
+            // } else {
+            //     this.set({geocoded: true});
+            //     this.set({geocodedLocation : gcode});
+            }
         },
 
         defaults: {
             locationName: '',
             people: [],
-            geocodedLocationData: {}
+            geocoded: false,
+            geocodedLocation: {}
         }
     });
 
