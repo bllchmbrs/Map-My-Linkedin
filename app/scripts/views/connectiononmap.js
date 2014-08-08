@@ -4,13 +4,16 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'templates'
-], function ($, _, Backbone, JST) {
+    '../models/gmapshelper'
+], function ($, _, Backbone, googleMaps) {
     'use strict';
 
-    var ConnectionMapView = Backbone.View.extend({
+    var ConnectiononmapView = Backbone.View.extend({
+        events: {}, // need to add our "add in geocode value"
+
         initialize: function () {
-            this.render();
+            // this.listenTo(this.model, 'change', this.render);
+            // this.listenTo(this.model, 'geocode', this.render); // Think it will be something like this
         },
 
         render: function () {
@@ -24,7 +27,5 @@ define([
         }
     });
 
-    return ConnectionMapView;
+    return ConnectiononmapView;
 });
-
-//Could use this in the future to show a list of people then have a marker popup where they are...
