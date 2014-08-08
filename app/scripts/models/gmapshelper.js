@@ -10,19 +10,21 @@ define(function(){
     var geocoder = new google.maps.Geocoder();
 
     function geocodeAddress (address) {
+        var finalResults = false;
+        console.log("geocoding " + address);
         geocoder.geocode({'address': address}, function (results, status) {
+            console.log(status);
             if (status === google.maps.GeocoderStatus.OK) {
-                console.log(results);
+                finalResults = true;
             }
             else {
-                console.log(status);
+                finalResults = status;
             }
         });
-        return 'Geo data';
+        return finalResults;
     }
 
     function cleanAddress (rawJsonResponse) {
-
         return 'cleaned json';
     }
 
@@ -37,7 +39,6 @@ define(function(){
             for (var i2 = 0; i2 < chunksOf; i2++) {
 
                 if (chunkNumber + i2 < rawCollection.length) {
-                    console.log(currentPauseTime);
                     (function(pauseTime, chunkValue) {
                         setTimeout(function(){
                             rawCollection.at(chunkValue).geocode();
@@ -53,12 +54,11 @@ define(function(){
     }
 
     function geocodeCollection (collection) {
-        var chunksList = chunkCollection(10, collection, 1000);
+        chunkCollection(8, collection, 5000);
     }
 
     return {
         map: map,
-        geocoder: geocoder,
         geocodeAddress: geocodeAddress,
         geocodeCollection: geocodeCollection
     };
