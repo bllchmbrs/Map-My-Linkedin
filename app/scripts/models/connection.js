@@ -13,26 +13,26 @@ define([
         },
 
         geocode: function() {
-            // console.log("here");
-            console.log(this.get('locationName'));
-            // $.ajax({
-            //     dataType: "json",
-            //     url: "api/",
-            //     data: {address: this.get('locationName')}
-            // }).done(function(data) {
-            //     console.log("hello");
-            //     console.log(data);
-            //     console.log("fail " + textStatus + " " + error);
-            // }).fail(function(){
-            //     console.log("failed");
-            // });
+            var that = this;
+            $.ajax({
+                dataType: "json",
+                url: "api/",
+                data: {address: that.get('locationName')}  
+            }).done(function(data){
+                that.set({
+                    latLong: data['coordinates'], 
+                    officialName: data['name'],
+                    geocoded:true
+                });
+            });
         },
 
         defaults: {
             locationName: '',
             people: [],
             geocoded: false,
-            geocodedLocation: {}
+            latLong: undefined,
+            officialName: ""
         }
     });
 
