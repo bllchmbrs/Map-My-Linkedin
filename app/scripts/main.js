@@ -62,6 +62,7 @@ define(function(require){
                     tempPeople.push(cleanedConnection);
                     tempConnection.set({people: tempPeople});
                 } else {
+                    status.set({message: "Now we're getting the people at "+ cleanedLocation});
                     cm = new ConnectionModel({
                             locationName: cleanedLocation,
                             people: [cleanedConnection]
