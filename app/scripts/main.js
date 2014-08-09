@@ -14,14 +14,14 @@ require.config({
 define(function(require){
     // Models
     var ConnectionModel = require('./models/connection');
-    var googleMaps = require('./models/gmapshelper');
+    var GoogleMaps = require('./models/gmapshelper');
     var StatusModel = require('./models/status');
 
     // Collections
     var ConnectionCollection = require('./collections/connection');
 
     // Views
-    var ConnectionMapView = require('./views/connection-map');
+    var ConnectionMapView = require('./views/connectiononmap');
     var StatusView = require('./views/status');
 
     //Helpers
@@ -33,8 +33,7 @@ define(function(require){
         liveStatus = new StatusView({model: status});
     var connections = new ConnectionCollection;
 
-    var globalMap = googleMaps.map;
-    var geocodeCollection = googleMaps.geocodeCollection;
+    var globalMap = GoogleMaps.map;
 
     var cleanLinkedinLocation = FunctionHelpers.cleanLinkedinLocation,
         cleanLinkedinConnection = FunctionHelpers.cleanLinkedinConnection;
@@ -67,12 +66,12 @@ define(function(require){
                             locationName: cleanedLocation,
                             people: [cleanedConnection]
                         });
+                    cm.geocode();
                     connections.push(cm);
                 }
             }
         }
         status.set({message: values.length + ' connections in ' + connections.length + ' locations. Now we\'ve got to put them on the map!'});
-        geocodeCollection(connections);
     }
 
 
