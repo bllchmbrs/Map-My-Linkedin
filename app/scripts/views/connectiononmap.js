@@ -4,7 +4,7 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    '../models/gmapshelper'
+    '../models/gmapshelper' // need to remove this dependency
 ], function ($, _, Backbone, googleMaps) {
     'use strict';
 

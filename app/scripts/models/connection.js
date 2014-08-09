@@ -3,27 +3,29 @@
 define([
     'underscore',
     'backbone',
-    './gmapshelper'
-], function (_, Backbone, googleMaps) {
+    'jquery'
+], function (_, Backbone, $) {
     'use strict';
-
-    var geocodeAddress = googleMaps.geocodeAddress;
 
     var ConnectionModel = Backbone.Model.extend({
         initialize: function() {
+            this.geocode();
         },
 
         geocode: function() {
-            var gcode = geocodeAddress(this.get("locationName"));
-            console.log("Executing at: " + new Date());
-            if (gcode !== true) {
-                console.log("-------------------------------------");
-                console.log(this.get('locationName') + " failed");
-                console.log(gcode);
-            // } else {
-            //     this.set({geocoded: true});
-            //     this.set({geocodedLocation : gcode});
-            }
+            // console.log("here");
+            console.log(this.get('locationName'));
+            // $.ajax({
+            //     dataType: "json",
+            //     url: "api/",
+            //     data: {address: this.get('locationName')}
+            // }).done(function(data) {
+            //     console.log("hello");
+            //     console.log(data);
+            //     console.log("fail " + textStatus + " " + error);
+            // }).fail(function(){
+            //     console.log("failed");
+            // });
         },
 
         defaults: {
