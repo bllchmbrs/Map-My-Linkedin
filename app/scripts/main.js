@@ -66,7 +66,6 @@ define(function(require){
                             locationName: cleanedLocation,
                             people: [cleanedConnection]
                         });
-                    cm.geocode();
                     connections.push(cm);
                 }
             }
