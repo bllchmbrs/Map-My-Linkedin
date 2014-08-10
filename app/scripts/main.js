@@ -16,6 +16,7 @@ define(function(require){
     var ConnectionModel = require('./models/connection');
     var GoogleMaps = require('./models/gmapshelper');
     var StatusModel = require('./models/status');
+    var PersonModel = require('./models/person');
 
     // Collections
     var ConnectionCollection = require('./collections/connection');
@@ -49,23 +50,25 @@ define(function(require){
 
     function parseConnectionValues (unParsedConnections) {
         var values = unParsedConnections.values;
-        var cleanedLocation, cleanedConnection, tempConnection, tempPeople, cm, cv;
+        var cleanedLocation, cleanedPerson, tempConnection, tempPeople, cm, cv;
 
         status.set({message: 'Alright we\'ve found ' + values.length + ' connections, now we need to go through them'});
         for (var i = 0; i < values.length; i++) {
+            cleanedPerson = new PersonModel(cleanLinkedinConnection(values[i]));
+
             cleanedLocation = cleanLinkedinLocation(values[i].location);
-            cleanedConnection = cleanLinkedinConnection(values[i]);
             tempConnection = connections.findWhere({locationName: cleanedLocation});
+
             if (cleanedLocation !== undefined) {
                 if (tempConnection !== undefined) { 
                     tempPeople = tempConnection.get('people');
-                    tempPeople.push(cleanedConnection);
+                    tempPeople.push(cleanedPerson);
                     tempConnection.set({people: tempPeople});
                 } else {
                     status.set({message: "Now we're getting the people at "+ cleanedLocation});
                     cm = new ConnectionModel({
                             locationName: cleanedLocation,
-                            people: [cleanedConnection]
+                            people: [cleanedPerson]
                         });
                     cv = new ConnectionMappedView({model:cm});
                     cv.render();
