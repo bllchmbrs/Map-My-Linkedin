@@ -19,32 +19,32 @@ define([
             var data;
             data = testData[this.get("locationName")];
             this.set({
-                latLong: data['coordinates'], 
+                latLng: data['coordinates'], 
                 officialName: data['formatted_address'],
                 geocoded:true
             });
         },
 
-        geocode: function() {
-            var that = this;
-            $.ajax({
-                dataType: "json",
-                url: "api/",
-                data: {address: that.get('locationName')}  
-            }).done(function(data){
-                that.set({
-                    latLong: data['coordinates'], 
-                    officialName: data['formatted_address'],
-                    geocoded:true
-                });
-            });
-        },
+        // geocode: function() {
+        //     var that = this;
+        //     $.ajax({
+        //         dataType: "json",
+        //         url: "api/",
+        //         data: {address: that.get('locationName')}  
+        //     }).done(function(data){
+        //         that.set({
+        //             latLng: data['coordinates'], 
+        //             officialName: data['formatted_address'],
+        //             geocoded:true
+        //         });
+        //     });
+        // },
 
         defaults: {
             locationName: '',
             people: [],
             geocoded: false,
-            latLong: undefined,
+            latLng: undefined,
             officialName: ""
         }
     });
