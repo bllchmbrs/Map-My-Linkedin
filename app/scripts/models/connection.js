@@ -3,13 +3,19 @@
 define([
     'underscore',
     'backbone',
-    'jquery'
-], function (_, Backbone, $) {
+    'jquery',
+    '../../testingdump'
+], function (_, Backbone, $, testData) {
     'use strict';
 
     var ConnectionModel = Backbone.Model.extend({
         initialize: function() {
-            this.geocode();
+            // this.geocode();
+            this.geocodeLocal();
+        },
+
+        geocodeLocal: function () {
+            // we use geocode local to load test data, this is not run in prod.
         },
 
         geocode: function() {
