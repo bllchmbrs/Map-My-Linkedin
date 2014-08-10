@@ -16,6 +16,13 @@ define([
 
         geocodeLocal: function () {
             // we use geocode local to load test data, this is not run in prod.
+            var data;
+            data = testData[this.get("locationName")];
+            this.set({
+                latLong: data['coordinates'], 
+                officialName: data['formatted_address'],
+                geocoded:true
+            });
         },
 
         geocode: function() {
@@ -27,7 +34,7 @@ define([
             }).done(function(data){
                 that.set({
                     latLong: data['coordinates'], 
-                    officialName: data['name'],
+                    officialName: data['formatted_address'],
                     geocoded:true
                 });
             });
