@@ -8,7 +8,19 @@ define(function(){
         center: new google.maps.LatLng(39.742043, -104.991531)
     });
 
+    function mapsLatLng(lat,lng){
+        return new google.maps.LatLng(lat, lng);
+    }
+
+    function mapsInfoWindow(contentString){
+        return new google.maps.InfoWindow({
+            content: contentString
+        });
+    }
+
     return {
-        map: map
+        map: map,
+        mapsLatLng: mapsLatLng,
+        mapsInfoWindow: mapsInfoWindow
     };
 });
