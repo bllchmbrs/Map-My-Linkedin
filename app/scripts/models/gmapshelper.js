@@ -18,9 +18,14 @@ define(function(){
         });
     }
 
+    function mapsAddEventListener(object, evnt, callback) {
+        google.maps.event.addListener(object, evnt, callback);
+    }
+
     return {
         map: map,
         mapsLatLng: mapsLatLng,
-        mapsInfoWindow: mapsInfoWindow
+        mapsInfoWindow: mapsInfoWindow,
+        mapsAddEventListener: mapsAddEventListener
     };
 });
