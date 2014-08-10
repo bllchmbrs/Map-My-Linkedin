@@ -21,7 +21,7 @@ define([
         },
 
         render: function () {
-            var lat, lng, latlng, mapPoint, infoWindow;
+            var lat, lng, latlng, mapPoint, infoWindow, marker;
             //I think some of this logic should live in the model...although it is stateworthy
             // If we keep it here it's completely naive to google maps
             // which is probably the way to do it. Now we can swap out google maps
@@ -33,10 +33,13 @@ define([
             // This next part is where we'll have to fill out our template
             infoWindow = googleMaps.mapsInfoWindow(this.template(this.model.toJSON()));
 
-            this.marker = new google.maps.Marker({
+            marker = new google.maps.Marker({
                 position: mapPoint,
                 map: googleMaps.map
             });
+            googleMaps.mapsAddEventListener(marker, 'click', function(){
+                infoWindow.open(googleMaps.map, marker);
+            })
 
         }
     });
