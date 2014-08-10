@@ -1,2 +1,13 @@
-<p>Your content here. <%=geocoded %> </p>
+<div class="mapinfocontent">
+    <h1>
+    <%= officialName %>
+    </h1>
+    <p>
+        You know <%= people.length %> here. Some of the most notable are
+        <img src="<%= people[0].pictureUrl %>">
+        <%= people[0].firstName %>
+    </p>
+    <p>Your content here. <%=geocoded %> </p>
+</div>
+
 
