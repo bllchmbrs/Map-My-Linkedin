@@ -45,7 +45,8 @@ define([
             people: [],
             geocoded: false,
             latLng: undefined,
-            officialName: ""
+            officialName: "",
+            featured:false
         }
     });
 
