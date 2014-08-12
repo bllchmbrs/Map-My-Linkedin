@@ -32,6 +32,7 @@ define([
             mapPoint = googleMaps.mapsLatLng(lat,lng);
             // This next part is where we'll have to fill out our template
             infoWindow = googleMaps.mapsInfoWindow(this.template(this.model.toJSON()));
+            console.log(this.model.get("people"));
 
             marker = new google.maps.Marker({
                 position: mapPoint,
