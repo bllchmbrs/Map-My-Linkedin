@@ -12,6 +12,24 @@ define([
         initialize: function() {
             // this.geocode();
             this.geocodeLocal();
+            this.on('change:updatedPeople', this.calculate);
+            this.calculate();
+        },
+
+        calculate: function(){
+            this.set({
+                numberOfPeople: this.get("people").length
+            });
+        },
+
+        appendToPeople: function(person){
+            var peeps = this.get('people');
+            var timesUpdated = this.get('updatedPeople');
+            peeps.push(person);
+            this.set({
+                people: peeps,
+                updatedPeople: timesUpdated + 1
+            });
         },
 
         geocodeLocal: function () {
@@ -46,7 +64,9 @@ define([
             geocoded: false,
             latLng: undefined,
             officialName: "",
-            featured:false
+            featured:false,
+            numberOfPeople: 0,
+            updatedPeople: 0
         }
     });
 
