@@ -34,8 +34,8 @@ define(function(require){
 
     // Instantiations
     var IN = window.IN;
-    var status = new StatusModel(),
-        liveStatus = new StatusView({model: status});
+    var status = new StatusModel();
+    new StatusView({model: status});
     var connections = new ConnectionCollection;
     var globalMap = GoogleMaps.map;
 
@@ -51,7 +51,7 @@ define(function(require){
 
     function parseConnectionValues (unParsedConnections) {
         var values = unParsedConnections.values;
-        var cleanedLocation, cleanedPerson, tempConnection, tempPeople, cm, cv, fc, fp;
+        var cleanedLocation, cleanedPerson, tempConnection, cm, cv, fc, fp;
 
         status.set({message: 'Alright we\'ve found ' + values.length + ' connections, now we need to go through them'});
         for (var i = 0; i < values.length; i++) {
@@ -61,10 +61,10 @@ define(function(require){
             tempConnection = connections.findWhere({locationName: cleanedLocation});
 
             if (cleanedLocation !== undefined) {
-                if (tempConnection !== undefined) { 
+                if (tempConnection !== undefined) {
                     tempConnection.appendToPeople(cleanedPerson);
                 } else {
-                    status.set({message: "Now we're getting the people at "+ cleanedLocation});
+                    status.set({message: 'Now we\'re getting the people at '+ cleanedLocation});
                     cm = new ConnectionModel({
                             locationName: cleanedLocation,
                             people: [cleanedPerson]

@@ -10,9 +10,9 @@ define([
 
         initialize: function() {
             if (this.numConnectionsCapped) {
-                this.set({"displayConnections" : "500+"});
+                this.set({displayConnections : '500+'});
             } else {
-                this.set({"displayConnections" : this.get("numConnections")});
+                this.set({displayConnections : this.get('numConnections')});
             }
             // need to add in their current position
         },

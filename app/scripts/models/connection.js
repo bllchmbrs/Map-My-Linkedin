@@ -19,9 +19,9 @@ define([
 
         calculate: function(){
             this.set({
-                numberOfPeople: this.get("people").length,
-                featuredPerson: _.max(this.get("people"), function(person){
-                    return person.get("numConnections");
+                numberOfPeople: this.get('people').length,
+                featuredPerson: _.max(this.get('people'), function(person){
+                    return person.get('numConnections');
                 })
             });
         },
@@ -38,19 +38,19 @@ define([
 
         setFeaturedPerson: function(){
             if (this.get('featured')) {
-                this.get("featuredPerson").set({featured:true});
+                this.get('featuredPerson').set({featured:true});
             } else {
-                this.get("featuredPerson").set({featured:false});
+                this.get('featuredPerson').set({featured:false});
             }
         },
 
         geocodeLocal: function () {
             // we use geocode local to load test data, this is not run in prod.
             var data;
-            data = testData[this.get("locationName")];
+            data = testData[this.get('locationName')];
             this.set({
-                latLng: data['coordinates'], 
-                officialName: data['formatted_address'],
+                latLng: data.coordinates,
+                officialName: data.formatted_address,
                 geocoded:true
             });
         },
@@ -58,8 +58,8 @@ define([
         // geocode: function() {
         //     var that = this;
         //     $.ajax({
-        //         dataType: "json",
-        //         url: "api/",
+        //         dataType: 'json',
+        //         url: 'api/',
         //         data: {address: that.get('locationName')}  
         //     }).done(function(data){
         //         that.set({
@@ -75,7 +75,7 @@ define([
             people: [],
             geocoded: false,
             latLng: undefined,
-            officialName: "",
+            officialName: '',
             featured:false,
             numberOfPeople: 0,
             updatedPeople: 0,

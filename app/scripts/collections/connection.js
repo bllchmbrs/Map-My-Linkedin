@@ -11,14 +11,14 @@ define([
         model: ConnectionModel,
 
         initialize:function (){
-            this.on("change:featured", this.resetAllOthersFeatured, this);
+            this.on('change:featured', this.resetAllOthersFeatured, this);
         },
 
-        resetAllOthersFeatured: function (model, val, options){            
+        resetAllOthersFeatured: function (model){
             this.forEach(function(pluckedModel){
                 if (model.cid !== pluckedModel.cid) {
                     pluckedModel.set({
-                        "featured": false
+                        'featured': false
                     });
                 }
             });
