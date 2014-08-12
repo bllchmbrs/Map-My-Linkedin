@@ -19,7 +19,8 @@ define([
             numConnections : 0,
             numConnectionsCapped : false,
             pictureUrl : '',
-            positions : []
+            positions : [],
+            featured : false
         }
     });
 
