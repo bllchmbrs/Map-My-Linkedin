@@ -10,21 +10,19 @@ define([
 
     var FeaturedpersonView = Backbone.View.extend({
         template: JST['app/scripts/templates/featuredPerson.ejs'],
-
-        tagName: 'div',
-
-        id: '',
-
-        className: '',
+        el: $('#featured-person'),
 
         events: {},
 
         initialize: function () {
-            this.listenTo(this.model, 'change', this.render);
+            this.listenTo(this.model, 'change:featured', this.render);
         },
 
         render: function () {
-            this.$el.html(this.template(this.model.toJSON()));
+            if (this.model.get("featured")) {
+                this.$el.html(this.template(this.model.toJSON()));
+                console.log("hello");
+            };
         }
     });
 
