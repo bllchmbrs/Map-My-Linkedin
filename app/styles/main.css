@@ -25,3 +25,7 @@ body {
 .footer {
     height:200px;
 }
+
+#main {
+    /*display:none;*/
+}
