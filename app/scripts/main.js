@@ -63,9 +63,7 @@ define(function(require){
 
             if (cleanedLocation !== undefined) {
                 if (tempConnection !== undefined) { 
-                    tempPeople = tempConnection.get('people');
-                    tempPeople.push(cleanedPerson);
-                    tempConnection.set({people: tempPeople});
+                    tempConnection.appendToPeople(cleanedPerson);
                 } else {
                     status.set({message: "Now we're getting the people at "+ cleanedLocation});
                     cm = new ConnectionModel({
