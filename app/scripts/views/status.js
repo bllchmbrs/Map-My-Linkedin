@@ -15,7 +15,7 @@ define([
         events: {},
 
         initialize: function () {
-            this.listenTo(this.model, 'change', this.render);
+            this.listenTo(this.model, 'change:message', this.render);
             this.render();
         },
 
