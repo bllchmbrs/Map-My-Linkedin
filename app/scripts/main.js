@@ -29,17 +29,16 @@ define(function(require){
 
     //Helpers
     var FunctionHelpers = require('./utils/functions');
+    var cleanLinkedinLocation = FunctionHelpers.cleanLinkedinLocation,
+        cleanLinkedinConnection = FunctionHelpers.cleanLinkedinConnection;
 
     // Instantiations
     var IN = window.IN;
     var status = new StatusModel(),
         liveStatus = new StatusView({model: status});
     var connections = new ConnectionCollection;
-
     var globalMap = GoogleMaps.map;
 
-    var cleanLinkedinLocation = FunctionHelpers.cleanLinkedinLocation,
-        cleanLinkedinConnection = FunctionHelpers.cleanLinkedinConnection;
 
     function getConnections () {
         status.set({message: 'Getting Connections'});
