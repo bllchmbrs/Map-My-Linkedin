@@ -13,12 +13,16 @@ define([
             // this.geocode();
             this.geocodeLocal();
             this.on('change:updatedPeople', this.calculate);
+            this.on('change:featured', this.setFeaturedPerson);
             this.calculate();
         },
 
         calculate: function(){
             this.set({
-                numberOfPeople: this.get("people").length
+                numberOfPeople: this.get("people").length,
+                featuredPerson: _.max(this.get("people"), function(person){
+                    return person.get("numConnections");
+                })
             });
         },
 
@@ -30,6 +34,14 @@ define([
                 people: peeps,
                 updatedPeople: timesUpdated + 1
             });
+        },
+
+        setFeaturedPerson: function(){
+            if (this.get('featured')) {
+                this.get("featuredPerson").set({featured:true});
+            } else {
+                this.get("featuredPerson").set({featured:false});
+            }
         },
 
         geocodeLocal: function () {
@@ -66,7 +78,8 @@ define([
             officialName: "",
             featured:false,
             numberOfPeople: 0,
-            updatedPeople: 0
+            updatedPeople: 0,
+            featuredPerson: undefined
         }
     });
 
