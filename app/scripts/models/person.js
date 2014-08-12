@@ -9,6 +9,12 @@ define([
     var PersonModel = Backbone.Model.extend({
 
         initialize: function() {
+            if (this.numConnectionsCapped) {
+                this.set({"displayConnections" : "500+"});
+            } else {
+                this.set({"displayConnections" : this.get("numConnections")});
+            }
+            // need to add in their current position
         },
 
         defaults: {
@@ -18,6 +24,7 @@ define([
             industry : '',
             numConnections : 0,
             numConnectionsCapped : false,
+            displayConnections: 0,
             pictureUrl : '',
             positions : [],
             featured : false
