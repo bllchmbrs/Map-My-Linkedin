@@ -9,16 +9,16 @@ body {
 
 #map-location {
     width:100%;
-    height: 585px;
+    height: 555px;
 }
 
 #featured-connection {
-    height:195px;
+    height:185px;
     background-color: grey;
 }
 
 #featured-person {
-    height:390px;
+    height:370px;
     background-color: grey;
 }
 
