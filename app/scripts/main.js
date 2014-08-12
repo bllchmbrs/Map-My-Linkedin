@@ -78,7 +78,6 @@ define(function(require){
             }
         }
         status.set({message: values.length + ' connections in ' + connections.length + ' locations. Now we\'ve got to put them on the map!'});
-        console.log(connections);
     }
 
 
