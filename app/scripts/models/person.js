@@ -12,14 +12,14 @@ define([
         },
 
         defaults: {
-            firstName = '';
-            lastName = '';
-            formattedName = '';
-            industry = '';
-            numConnections = 0;
-            numConnectionsCapped = false;
-            pictureUrl = '';
-            positions = [];
+            firstName : '',
+            lastName : '',
+            formattedName : '',
+            industry : '',
+            numConnections : 0,
+            numConnectionsCapped : false,
+            pictureUrl : '',
+            positions : []
         }
     });
 
