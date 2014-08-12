@@ -17,7 +17,7 @@ define([
         events: {},
 
         initialize: function () {
-            // this.listenTo(this.model, 'change', this.render);
+            this.render();
         },
 
         render: function () {
