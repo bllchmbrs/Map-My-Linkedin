@@ -71,7 +71,6 @@ define(function(require){
                             people: [cleanedPerson]
                         });
                     cv = new ConnectionMappedView({model:cm});
-                    cv.render();
                     connections.push(cm);
                 }
             }
