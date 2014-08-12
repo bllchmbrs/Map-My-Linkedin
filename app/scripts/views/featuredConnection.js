@@ -10,21 +10,19 @@ define([
 
     var FeaturedconnectionView = Backbone.View.extend({
         template: JST['app/scripts/templates/featuredConnection.ejs'],
-
-        tagName: 'div',
-
-        id: '',
-
-        className: '',
+        el: $('#featured-connection'),
 
         events: {},
 
         initialize: function () {
-            this.listenTo(this.model, 'change', this.render);
+            this.listenTo(this.model, 'change:featured', this.render);
         },
 
         render: function () {
-            this.$el.html(this.template(this.model.toJSON()));
+            if (this.model.get("featured")) {
+                this.$el.html(this.template(this.model.toJSON()));
+                console.log("hello");
+            };
         }
     });
 
