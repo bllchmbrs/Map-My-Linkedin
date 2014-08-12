@@ -24,6 +24,8 @@ define(function(require){
     // Views
     var ConnectionMappedView = require('./views/connectionMapped');
     var StatusView = require('./views/status');
+    var FeaturedPerson = require('./views/featuredPerson');
+    var FeaturedConnection = require('./views/featuredConnection');
 
     //Helpers
     var FunctionHelpers = require('./utils/functions');
@@ -50,7 +52,7 @@ define(function(require){
 
     function parseConnectionValues (unParsedConnections) {
         var values = unParsedConnections.values;
-        var cleanedLocation, cleanedPerson, tempConnection, tempPeople, cm, cv;
+        var cleanedLocation, cleanedPerson, tempConnection, tempPeople, cm, cv, fc, fp;
 
         status.set({message: 'Alright we\'ve found ' + values.length + ' connections, now we need to go through them'});
         for (var i = 0; i < values.length; i++) {
@@ -71,6 +73,8 @@ define(function(require){
                             people: [cleanedPerson]
                         });
                     cv = new ConnectionMappedView({model:cm});
+                    fc = new FeaturedConnection({model:cm});
+                    fp = new FeaturedPerson({model:cleanedPerson});
                     connections.push(cm);
                 }
             }
