@@ -39,9 +39,16 @@ define(function(require){
     var connections = new ConnectionCollection;
     var globalMap = GoogleMaps.map;
 
+    function startApp () {
+        status.set({message: 'Getting Connections'});
+        getConnections();
+        $('html, body').animate({
+            scrollTop: $('#status').offset().top
+        }, 2000);
+    }
+
 
     function getConnections () {
-        status.set({message: 'Getting Connections'});
         IN.API.Connections('me')
         .fields('firstName', 'lastName', 'industry', 'location',
             'picture-url', 'positions', 'num-connections', 'num-connections-capped',
@@ -50,6 +57,7 @@ define(function(require){
     }
 
     function parseConnectionValues (unParsedConnections) {
+
         var values = unParsedConnections.values;
         var cleanedLocation, cleanedPerson, tempConnection, cm, cv, fc, fp;
 
@@ -80,5 +88,5 @@ define(function(require){
     }
 
 
-    IN.Event.on(IN, 'auth', getConnections);
+    IN.Event.on(IN, 'auth', startApp);
 });
