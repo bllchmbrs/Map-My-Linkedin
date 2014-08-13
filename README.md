@@ -37,6 +37,7 @@ I got tired of looking at the to do list apps. They're great but that doesn't me
 	* [Bower](http://bower.io)
 	* [JQuery](http://jquery.com)
 	* [Bootstrap](http://getbootstrap.com)
+	* [Grunt](http://gruntjs.com)
 * Simple Back Ends
 	* [Python](https://www.python.org/)
 	* [Flask](http://flask.pocoo.org/)
