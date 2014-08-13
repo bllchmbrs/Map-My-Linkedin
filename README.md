@@ -15,6 +15,8 @@ I'm using the LinkedIn API to access this information then Google Maps to displa
 
 Learning how to program is hard and takes a lot of motivation. But when you're just doing small projects yourself it doesn't get much harder. I created this application so that other people can contribute at all different levels. See contributing below and you'll see how you can join me.
 
+I got tired of looking at the to do list apps. They're great but that doesn't mean that I understand how that applies to backbone or angularjs. I need to get dirty and play around with things. The problem is that contributing to a real OSS project means a lot of people could end up depending on your code.
+
 
 # Contributing
 ----
@@ -24,6 +26,7 @@ Learning how to program is hard and takes a lot of motivation. But when you're j
 * Basics of Python
 * Basics of Javascript
 * Basics of HTML + CSS
+* Willingness to learn
 
 
 ### What you will learn
@@ -44,14 +47,17 @@ Learning how to program is hard and takes a lot of motivation. But when you're j
 
 ###How to get started
 
-* Download this repository
 
 
 
 
 ### To Do List
 
+####Javascript/ Front End
 * Clean up the "Person" Template
 * Clean up the "Connection Template"
 * Add new metrics to the "Connections" + Display those in the connection template
-* 
+
+####Python Backend
+* Right now there's no cleaning of locations and sometimes they'll return two people that are really close to one another as seperate locations. This can be improved by looking at what kinds of locations are returned by the application
+
