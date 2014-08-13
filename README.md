@@ -10,11 +10,10 @@ One of my greatest issues with LinkedIn is that it can be a bit difficult to kno
 
 I'm using the LinkedIn API to access this information then Google Maps to display it. 
 
-## Motivation
+# Motivation
+----
 
 Learning how to program is hard and takes a lot of motivation. But when you're just doing small projects yourself it doesn't get much harder. I created this application so that other people can contribute at all different levels. See contributing below and you'll see how you can join me.
-
-
 
 
 # Contributing
@@ -34,6 +33,7 @@ Learning how to program is hard and takes a lot of motivation. But when you're j
 	* [Backbone](http://backbonejs.org)
 	* [Bower](http://bower.io)
 	* [JQuery](http://jquery.com)
+	* [Bootstrap](http://getbootstrap.com)
 * Simple Back Ends
 	* [Python](https://www.python.org/)
 	* [Flask](http://flask.pocoo.org/)
