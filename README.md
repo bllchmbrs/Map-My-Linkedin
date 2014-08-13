@@ -10,6 +10,48 @@ One of my greatest issues with LinkedIn is that it can be a bit difficult to kno
 
 I'm using the LinkedIn API to access this information then Google Maps to display it. 
 
-##Stage of Development
+## Motivation
 
-Right now this project is in the very early stages. More changes are pending...
+Learning how to program is hard and takes a lot of motivation. But when you're just doing small projects yourself it doesn't get much harder. I created this application so that other people can contribute at all different levels. See contributing below and you'll see how you can join me.
+
+
+
+
+# Contributing
+----
+
+### Skills You'll Need
+
+* Basics of Python
+* Basics of Javascript
+* Basics of HTML + CSS
+
+
+### What you will learn
+
+* Structuring Front End web apps with
+	* [Yeoman](http://yeoman.io)
+	* [Backbone](http://backbonejs.org)
+	* [Bower](http://bower.io)
+	* [JQuery](http://jquery.com)
+* Simple Back Ends
+	* [Python](https://www.python.org/)
+	* [Flask](http://flask.pocoo.org/)
+* APIs
+	* Google Maps
+	* Linkedin
+* Git + Github
+
+###How to get started
+
+* Download this repository
+
+
+
+
+### To Do List
+
+* Clean up the "Person" Template
+* Clean up the "Connection Template"
+* Add new metrics to the "Connections" + Display those in the connection template
+* 
