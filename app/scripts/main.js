@@ -39,6 +39,8 @@ define(function(require){
     var connections = new ConnectionCollection;
     var globalMap = GoogleMaps.map;
 
+    console.log('start');
+    
     function startApp () {
         status.set({message: 'Getting Connections'});
         getConnections();
