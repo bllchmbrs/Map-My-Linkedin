@@ -1,3 +1,7 @@
+### Due to LinkedIn's TOS Changes, this app is no longer functional.
+
+```
+
 #Map My Linked
 Map my linkedin allows for an easy way to map your LinkedIn Connections. It makes it simple to look for people you can meet up with in cities that you may be visiting or are in.
 
@@ -67,3 +71,4 @@ I'm preparing to contribute to some real applications but I thought it would be 
 ###### Python Backend
 * Right now there's no cleaning of locations and sometimes they'll return two people that are really close to one another as seperate locations. This can be improved by looking at what kinds of locations are returned by the application
 
+```
